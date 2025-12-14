@@ -235,9 +235,12 @@ body {
 #closeMenu:hover {
     color: #ffb3e6;
 }
+
+/* MOBILE FIX */
 @media screen and (max-width: 768px) {
     body {
         height: auto;
+        overflow-x: hidden;
     }
     .big-title {
         font-size: 60px;
@@ -256,8 +259,21 @@ body {
         max-width: 90%;
         margin-top: 10px;
     }
+    .hero-img {
+        top: 100px;
+    }
     .hero-img img {
         width: 250px;
+    }
+    .butterfly {
+        width: 80px;
+        top: 10px;
+        left: -40px;
+        animation: flyRightMobile 12s forwards;
+    }
+    @keyframes flyRightMobile {
+        0% { top: 50px; left: -40px; }
+        100% { top: 60px; left: 300px; }
     }
 }
 </style>
@@ -303,11 +319,11 @@ body {
     <img src="patpat.png" alt="My photo">
 </div>
 <img src="flying.gif" class="butterfly" id="butterfly">
-
 </main>
 <footer style="color:white; margin-left:60px; margin-top:50px;">
     <p>&copy; 2025 Patris An Avorque. All Rights Reserved.</p>
 </footer>
+
 <script>
 const butterfly = document.getElementById("butterfly");
 const glitterInterval = setInterval(() => {
@@ -326,18 +342,14 @@ const slideMenu = document.getElementById('slideMenu');
 const closeMenuBtn = document.getElementById('closeMenu');
 const menuButtons = Array.from(slideMenu.querySelectorAll('button')).filter(b => b.id !== 'closeMenu');
 
-menuBtn.addEventListener('click', () => {
-    slideMenu.classList.add('open');
-});
+menuBtn.addEventListener('click', () => { slideMenu.classList.add('open'); });
 closeMenuBtn.addEventListener('click', () => {
     const menuDisplay = document.getElementById('menuDisplay');
     if(menuDisplay.innerHTML.trim() !== ''){
         menuDisplay.innerHTML = '';
         menuButtons.forEach(btn => btn.style.display='block');
         slideMenu.style.width = '260px'; 
-    } else {
-        slideMenu.classList.remove('open');
-    }
+    } else { slideMenu.classList.remove('open'); }
 });
 
 function showProfile(){
@@ -398,7 +410,6 @@ showAchievement = function() {
     originalShowAchievement();
     setTimeout(enableAchievementZoom, 50);
 };
-
 function enableResumeZoom() {
     const resumeImg = document.querySelector('#menuDisplay img.resume-img');
     if(resumeImg){
@@ -438,6 +449,7 @@ function showResume(){
     `;
     slideMenu.style.width = '600px';
 }
+
 const toggle = document.getElementById('modeToggle');
 let savedTheme = localStorage.getItem('theme');
 if(!savedTheme) {
