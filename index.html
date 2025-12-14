@@ -235,26 +235,6 @@ body {
 #closeMenu:hover {
     color: #ffb3e6;
 }
-#introVideo video {
-    border-radius: 10px;
-}
-#contactForm input {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-#contactForm button {
-    padding: 10px 15px;
-    border-radius: 5px;
-    border: none;
-    background: #5a1a80;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-#contactForm button:hover {
-    background: #d40690;
-}
 </style>
 </head>
 <body>
@@ -298,27 +278,7 @@ body {
     <img src="patpat.png" alt="My photo">
 </div>
 <img src="flying.gif" class="butterfly" id="butterfly">
-<section id="introVideo" style="margin-left:60px; margin-top:40px;">
-    <h2 style="color:white;">Intro Video</h2>
-    <video width="600" controls>
-        <source src="intro.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</section>
-<section id="contactForm" style="margin-left:60px; margin-top:40px;">
-    <h2 style="color:white;">Contact Me</h2>
-    <form id="contactMeForm">
-        <label for="email" style="color:white;">Email:</label><br>
-        <input type="email" id="email" name="email" placeholder="example@mail.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br><br>
-        <label for="tel" style="color:white;">Phone Number:</label><br>
-        <input type="tel" id="tel" name="tel" placeholder="09XXXXXXXXX" required pattern="[0-9]{10}"><br><br>
-        <button type="submit">Submit</button>
-    </form>
-</section>
-<section id="projects" style="margin-left:60px; margin-top:40px;">
-    <h2 style="color:white;">Projects</h2>
-    <div id="projectList"></div>
-</section>
+
 </main>
 
 <footer style="color:white; margin-left:60px; margin-top:50px;">
@@ -471,22 +431,6 @@ function applyMode() {
 }
 applyMode();
 toggle.addEventListener('change', applyMode);
-
-// Contact Form Validation
-document.getElementById('contactMeForm').addEventListener('submit', function(e){
-    const email = document.getElementById('email');
-    const tel = document.getElementById('tel');
-    let valid = true;
-    if(!email.checkValidity()){
-        alert('Please enter a valid email.');
-        valid = false;
-    }
-    if(!tel.checkValidity()){
-        alert('Please enter a valid 10-digit phone number.');
-        valid = false;
-    }
-    if(!valid) e.preventDefault();
-});
 </script>
 </body>
 </html>
