@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Personal Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #150222, #260529, #44044d);
+    color: #251035;
+    position: relative;
+}
+#bgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.7;
+}
+#muteBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    font-size: 30px;
+    color: #ffb3e6;
+    cursor: pointer;
+    background: rgba(0,0,0,0.4);
+    border-radius: 50%;
+    padding: 10px;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    gap: 40px;
+}
+.menu-bg {
+    width: 150px;
+    max-width: 190px;
+    height: 70px;
+    background: linear-gradient(135deg, #5a1a80, #d40690);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -50px;
+}
+.heart {
+    font-size: 35px;
+    color: #ff69b4;
+    animation: jump 2s infinite;
+}
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+.navbar a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 20px;
+    line-height: 1;
+}
+.education-section {
+    position: absolute;
+    top: 30px;
+    right: 120px;
+    text-align: center;
+    z-index: 10;
+    color: #fff;
+}
+.education-section img {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffb3e6;
+}
+.education-texts {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    z-index: 10;
+}
+.education-texts p {
+    margin: 5px 0;
+    font-size: 25px;
+    animation: fadeOutText 6s forwards;
+}
+@keyframes fadeOutText {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+</style>
+</head>
+<body>
+<video id="bgVideo" autoplay muted loop>
+  <source src="EVSU Hymn (Lyric Video).mp4" type="video/mp4">
+</video>
+<div id="muteBtn">&#128263;</div>
+<div class="navbar">
+    <div class="menu-bg">
+        <span class="heart">&#10084;</span>
+    </div>
+<a href = "index.html">HOME</a>
+<a href = "About2.html">ABOUT ME</a>
+<a href = "About3.html">PROJECT</a>
+<a href = "Education.html">EDUCATION</a>
+<a href = "Contact.html">CONTACT</a>
+</div>
+
+<div class="education-section" id="educationSection">
+    <img src="Educationfirstyear.jpg" alt="Education">
+</div>
+<div class="education-texts" id="educationTexts">
+    <p>-Eastern Visayas State University Carigara Campus</p>
+    <p>-Bachelor of Science in Information Technology</p>
+</div>
+<script>
+const savedMode = localStorage.getItem('theme'); 
+const video = document.getElementById('bgVideo');
+if(savedMode === 'dark'){
+    document.body.style.background = 'linear-gradient(to right, #150222, #260529, #44044d)';
+    document.body.style.color = '#251035';
+    video.style.opacity = 0.7;
+} else {
+    document.body.style.background = 'linear-gradient(to right, #f4e1d2, #ffe6f0, #ffccf2)';
+    document.body.style.color = '#330033';
+    video.style.opacity = 0.8;
+}
+const muteBtn = document.getElementById('muteBtn');
+muteBtn.addEventListener('click', () => {
+  video.muted = !video.muted;
+  muteBtn.innerHTML = video.muted ? '&#128263;' : '&#128266;';
+  video.play();
+});
+const educationTexts = document.getElementById('educationTexts').querySelectorAll('p');
+setTimeout(() => {
+  educationTexts.forEach(text => text.classList.add('fade'));
+}, 1000);
+</script>
+
+</body>
+</html>

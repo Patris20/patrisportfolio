@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Personal Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #150222, #260529, #44044d);
+    color: #251035;
+    position: relative;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    gap: 40px;
+}
+.menu-bg {
+    width: 150px;
+    max-width: 190px;
+    height: 70px;
+    background: linear-gradient(135deg, #5a1a80, #d40690);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -50px;
+}
+.heart {
+    font-size: 35px;
+    color: #ff69b4;
+    animation: jump 2s infinite;
+}
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+.navbar a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 20px;
+    line-height: 1;
+}
+.big-title {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 130px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 0;
+}
+.oblong-container {
+    position: absolute;
+    top: 240px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    z-index: 1;
+    color: white;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.oblong {
+    width: 200px;
+    height: 45px;
+    border-radius: 30px;
+    background: linear-gradient(to right, #f982a0, #3e1526);
+}
+.oblong.big {
+    font-family: verdana, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    width: 340px;
+    height: 80px;
+}
+.oblong, .oblong.big {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+#popupWrapper {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9; 
+    width: max-content;
+    height: max-content;
+}
+#popupWrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(231,4,42,0.8);
+    z-index: 0;
+    animation: cornerGlow 3s linear infinite;
+}
+#popupImage {
+    position: relative;
+    z-index: 10; 
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 10px;
+    background-color: #ffd6e8;
+}
+#popupImage img {
+    width: 300px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+@keyframes cornerGlow {
+    0%   { box-shadow: -20px -20px 35px rgba(231,4,42,0.8); }
+    25%  { box-shadow: -20px 20px 35px rgba(231,4,42,0.8); }
+    50%  { box-shadow: 20px 20px 35px rgba(231,4,42,0.8); }
+    75%  { box-shadow: 20px -20px 35px rgba(231,4,42,0.8); }
+    100% { box-shadow: -20px -20px 35px rgba(231,4,42,0.8); }
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+    <div class="menu-bg">
+        <span class="heart">&#10084;</span>
+    </div>
+<a href = "index.html">HOME</a>
+<a href = "About2.html">ABOUT ME</a>
+<a href = "About3.html">PROJECT</a>
+<a href = "Education.html">EDUCATION</a>
+<a href = "Contact.html">CONTACT</a>
+</div>
+<div class="big-title">ABOUT ME</div>
+<div class="oblong-container">
+     <div class="column">
+        <div class="oblong big">Personal Information</div>
+        <div class="oblong">Patris An Avorque</div>
+        <div class="oblong">Barugo,leyte</div>
+        <div class="oblong">Female</div>
+    </div>
+    <div class="column">
+        <div class="oblong big">Skills</div>
+        <div class="oblong">Creating simple web pages</div>
+        <div class="oblong">Designing clean layouts</div>
+        <div class="oblong">Adding basic interactivity</div>
+    </div>
+    <div class="column">
+        <div class="oblong big">IT Student learning</div>
+        <div class="oblong">HTML5</div>
+        <div class="oblong">CSS3</div>
+        <div class="oblong">JavaScript</div>
+    </div>
+</div>
+<div id="popupWrapper">
+    <div id="popupImage">
+        <img id="popupImg" src="" alt="">
+    </div>
+</div>
+<script>
+const savedMode = localStorage.getItem('theme'); 
+if(savedMode === 'dark'){
+    document.body.style.background = 'linear-gradient(to right, #150222, #260529, #44044d)';
+    document.body.style.color = '#251035';
+} else {
+    document.body.style.background = 'linear-gradient(to right, #f4e1d2, #ffe6f0, #ffccf2)';
+    document.body.style.color = '#330033';
+}
+const oblongs = document.querySelectorAll('.oblong');
+const popupWrapper = document.getElementById('popupWrapper');
+const popupImg = document.getElementById('popupImg');
+const imageMap = {
+    "Patris An Avorque": "patrisan.png",
+    "Barugo,leyte": "barugo.png",
+    "Female": "female.png",
+    "Creating simple web pages": "design.png",
+    "Designing clean layouts": "layout.png",
+    "Adding basic interactivity": "interactivity.png",
+    "HTML5": "html5.png",
+    "JavaScript": "java.png",
+    "CSS3": "css33.png"
+};
+oblongs.forEach(oblong => {
+    oblong.addEventListener('click', () => {
+        const text = oblong.textContent.trim();
+        if(imageMap[text]){
+            popupImg.src = imageMap[text];
+            popupWrapper.style.display = 'block';
+        }
+    });
+});
+popupWrapper.addEventListener('click', () => {
+    popupWrapper.style.display = 'none';
+});
+</script>
+</body>
+</html>

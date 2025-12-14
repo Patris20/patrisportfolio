@@ -1,0 +1,492 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Personal Portfolio</title>
+<style>
+:root {
+    --bg-color: linear-gradient(to right, #f4e1d2, #ffe6f0, #ffccf2);
+    --text-color: #330033;
+    --intro-color: #5a1a80;
+}
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    position: relative; 
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    gap: 40px;
+}
+.menu-bg {
+    width: 150px;
+    max-width: 190px;
+    height: 70px;
+    background: linear-gradient(135deg, #5a1a80, #d40690);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -50px;
+}
+.menu-icon {
+    font-size: 80px;
+    color: #ffb3e6;
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+}
+.navbar a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 20px;
+    line-height: 1;
+}
+.switch {
+    margin-left: auto;
+}
+.switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 45px;
+}
+.switch-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch-toggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ffc0cb;
+  transition: 0.4s;
+  border-radius: 45px;
+}
+.switch-toggle .slider:before {
+  position: absolute;
+  content: "";
+  height: 39px;
+  width: 39px;
+  left: 3px;
+  bottom: 3px;
+  background-color: violet;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+.switch-toggle input:checked + .slider {
+  background-color: #5a1a80;
+}
+.switch-toggle input:checked + .slider:before {
+  transform: translateX(40px);
+}
+.big-title {
+    position: relative;
+    text-align: left;
+    font-size: 120px;
+    font-weight: 900;
+    line-height: 110px;
+    margin-top: 60px;
+    margin-left: 60px;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    -webkit-text-stroke: 4px #b368ff;
+}
+.intro {
+    margin-left: 60px;
+    margin-top: 70px;
+    font-size: 60px;
+    color: var(--intro-color);
+}
+.subtext {
+    margin-left: 60px;
+    margin-top: 20px;
+    font-size: 20px;
+    max-width: 700px;
+    background: linear-gradient(to bottom, #3e0066, #66662f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-img {
+    position: absolute;
+    right: 5px;
+    top: 140px;
+}
+.hero-img img {
+    width: 520px;
+}
+.butterfly {
+    position: absolute;
+    width: 150px; 
+    top: 0;
+    left: -80px; 
+    z-index: 5;
+    animation: flyRight 12s forwards;
+}
+@keyframes flyRight {
+    0% { top: 50px; left: -100px; }
+    100% { top: 60px; left: 999px; }
+}
+.glitter {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #fff, #ff9be6);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: glitterFall 1.8s ease-out forwards;
+    z-index: 5;
+}
+@keyframes glitterFall {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(400px) scale(0); }
+}
+.slide-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 260px;
+    height: 50%;
+    background: #dd5daa;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.5);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999;
+    transition: all 0.5s ease;
+    border-radius: 0 10px 10px 0;
+}
+.slide-menu.open {
+    left: 0;
+}
+.slide-menu button {
+    padding: 10px;
+    font-size: 16px;
+    background: #5a1a80;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.slide-menu button:hover {
+    background: #d40690;
+}
+#menuDisplay {
+    margin-top: 15px;
+}
+#menuDisplay .profile-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+#menuDisplay img.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-top: -20px; 
+}
+#menuDisplay .profile-info {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+#menuDisplay .profile-info strong h1 {
+    margin: 0 0 10px 0;
+}
+#menuDisplay .profile-info p {
+    margin: 5px 0 0 20px;
+}
+#menuDisplay img.achievement-img {
+    width: 32%;
+    height: 40%;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+#menuDisplay img.resume-img {
+    width:50%;
+    height: 90%;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+#closeMenu {
+    font-size: 20px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+#closeMenu:hover {
+    color: #ffb3e6;
+}
+#introVideo video {
+    border-radius: 10px;
+}
+#contactForm input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+#contactForm button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background: #5a1a80;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+#contactForm button:hover {
+    background: #d40690;
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="navbar">
+    <div class="menu-bg">
+        <a class="menu-icon" id="menuBtn">&#9776;</a>
+    </div>
+<a href="index.html">HOME</a>
+<a href="About2.html">ABOUT ME</a>
+<a href="About3.html">PROJECT</a>
+<a href="Education.html">EDUCATION</a>
+<a href="Contact.html">CONTACT</a>
+
+    <div class="switch">
+      <label class="switch-toggle">
+        <input type="checkbox" id="modeToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+</div>
+</header>
+
+<main>
+<div class="slide-menu" id="slideMenu">
+    <button id="closeMenu"><</button>
+    <button onclick="showProfile()">Profile</button>
+    <button onclick="showAchievement()">Achievements</button>
+    <button onclick="showResume()">Resume</button>
+    <div id="menuDisplay"></div>
+</div>
+<div class="big-title">MY PERSONAL PORTFOLIO</div>
+<img src="flying.gif" class="butterfly" alt="butterfly">
+<div class="intro">Hi, I'm Patris An!</div>
+<div class="subtext">
+    This is my space where I share a <br>
+    little bit about who I am.
+</div>
+<div class="hero-img">
+    <img src="patpat.png" alt="My photo">
+</div>
+<img src="flying.gif" class="butterfly" id="butterfly">
+<section id="introVideo" style="margin-left:60px; margin-top:40px;">
+    <h2 style="color:white;">Intro Video</h2>
+    <video width="600" controls>
+        <source src="intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
+<section id="contactForm" style="margin-left:60px; margin-top:40px;">
+    <h2 style="color:white;">Contact Me</h2>
+    <form id="contactMeForm">
+        <label for="email" style="color:white;">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="example@mail.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br><br>
+        <label for="tel" style="color:white;">Phone Number:</label><br>
+        <input type="tel" id="tel" name="tel" placeholder="09XXXXXXXXX" required pattern="[0-9]{10}"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+<section id="projects" style="margin-left:60px; margin-top:40px;">
+    <h2 style="color:white;">Projects</h2>
+    <div id="projectList"></div>
+</section>
+</main>
+
+<footer style="color:white; margin-left:60px; margin-top:50px;">
+    <p>&copy; 2025 Patris An Avorque. All Rights Reserved.</p>
+</footer>
+
+<script>
+const butterfly = document.getElementById("butterfly");
+const glitterInterval = setInterval(() => {
+    const r = butterfly.getBoundingClientRect();
+    const g = document.createElement("div");
+    g.className = "glitter";
+    g.style.left = (r.left + Math.random() * 60) + "px";
+    g.style.top = (r.top + r.height) + "px";
+    document.body.appendChild(g);
+    setTimeout(() => g.remove(), 5000);
+},50);
+setTimeout(() => clearInterval(glitterInterval), 8000);
+const menuBtn = document.getElementById('menuBtn');
+const slideMenu = document.getElementById('slideMenu');
+const closeMenuBtn = document.getElementById('closeMenu');
+const menuButtons = Array.from(slideMenu.querySelectorAll('button')).filter(b => b.id !== 'closeMenu');
+menuBtn.addEventListener('click', () => {
+    slideMenu.classList.add('open');
+});
+closeMenuBtn.addEventListener('click', () => {
+    const menuDisplay = document.getElementById('menuDisplay');
+    if(menuDisplay.innerHTML.trim() !== ''){
+        menuDisplay.innerHTML = '';
+        menuButtons.forEach(btn => btn.style.display='block');
+        slideMenu.style.width = '260px'; 
+    } else {
+        slideMenu.classList.remove('open');
+    }
+});
+function showProfile(){
+    const menuDisplay = document.getElementById('menuDisplay');
+    menuButtons.forEach(btn => btn.style.display='none');
+    menuDisplay.innerHTML = `
+        <div class="profile-container">
+            <img src="id.jpg" class="profile-img" alt="Profile">
+            <div class="profile-info">
+                <strong><h1>Patris An Avorque</h1></strong>
+                <p>🎓: Bachelors of Science in Information Technology</p>
+                <p>🎓: Eastern Visayas State University-Carigara Campus</p>
+                <p>🎓: 2nd Year College</p>
+            </div>
+        </div>
+    `;
+    slideMenu.style.width = '600px';
+}
+function showAchievement(){
+    const menuDisplay = document.getElementById('menuDisplay');
+    menuButtons.forEach(btn => btn.style.display='none');
+    menuDisplay.innerHTML = `
+        <img src="achieve.jpg" class="achievement-img">
+        <img src="college.jpg" class="achievement-img">
+        <img src="group.jpg" class="achievement-img">
+        <img src="immersion.jpg" class="achievement-img">
+        <img src="junior.jpg" class="achievement-img">
+        <img src="rotc.jpeg" class="achievement-img">
+    `;
+    slideMenu.style.width = '600px';
+}
+function enableAchievementZoom() {
+    const achievementImgs = document.querySelectorAll('#menuDisplay img.achievement-img');
+    achievementImgs.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.onclick = () => {
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.inset = '0';
+            overlay.style.background = 'rgba(0,0,0,0.85)';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.zIndex = '5000';
+            overlay.onclick = () => overlay.remove();
+            const zoomedImg = document.createElement('img');
+            zoomedImg.src = img.src;
+            zoomedImg.style.maxWidth = '90%';
+            zoomedImg.style.maxHeight = '90%';
+            zoomedImg.style.borderRadius = '10px';
+            overlay.appendChild(zoomedImg);
+            document.body.appendChild(overlay);
+        };
+    });
+}
+const originalShowAchievement = showAchievement;
+showAchievement = function() {
+    originalShowAchievement();
+    setTimeout(enableAchievementZoom, 50);
+};
+function enableResumeZoom() {
+    const resumeImg = document.querySelector('#menuDisplay img.resume-img');
+    if(resumeImg){
+        resumeImg.style.cursor = 'pointer';
+        resumeImg.onclick = () => {
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.inset = '0';
+            overlay.style.background = 'rgba(0,0,0,0.85)';
+            overlay.style.display = 'flex';
+            overlay.style.justifyContent = 'center';
+            overlay.style.alignItems = 'center';
+            overlay.style.zIndex = '5000';
+            overlay.onclick = () => overlay.remove();
+            const zoomedImg = document.createElement('img');
+            zoomedImg.src = resumeImg.src;
+            zoomedImg.style.maxWidth = '90%';
+            zoomedImg.style.maxHeight = '90%';
+            zoomedImg.style.borderRadius = '10px';
+            overlay.appendChild(zoomedImg);
+            document.body.appendChild(overlay);
+        };
+    }
+}
+const originalShowResume = showResume;
+showResume = function() {
+    originalShowResume();
+    setTimeout(enableResumeZoom, 50); 
+};
+function showResume(){
+    const menuDisplay = document.getElementById('menuDisplay');
+    menuButtons.forEach(btn => btn.style.display='none');
+    menuDisplay.innerHTML = `
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+            <img src="resume.png" class="resume-img" alt="Resume" style="margin-top: -110px;">
+        </div>
+    `;
+    slideMenu.style.width = '600px';
+}
+const toggle = document.getElementById('modeToggle');
+toggle.checked = false; 
+localStorage.setItem('theme', 'light');
+applyMode();
+
+function applyMode() {
+    if (toggle.checked) {
+        document.documentElement.style.setProperty('--bg-color', 'linear-gradient(to right, #150222, #260529, #44044d)');
+        document.documentElement.style.setProperty('--text-color', '#251035');
+        document.documentElement.style.setProperty('--intro-color', 'white');
+        localStorage.setItem('theme', 'dark'); 
+    } else {
+        document.documentElement.style.setProperty('--bg-color', 'linear-gradient(to right, #f4e1d2, #ffe6f0, #ffccf2)');
+        document.documentElement.style.setProperty('--text-color', '#330033');
+        document.documentElement.style.setProperty('--intro-color', '#5a1a80');
+        localStorage.setItem('theme', 'light'); 
+    }
+}
+applyMode();
+toggle.addEventListener('change', applyMode);
+
+// Contact Form Validation
+document.getElementById('contactMeForm').addEventListener('submit', function(e){
+    const email = document.getElementById('email');
+    const tel = document.getElementById('tel');
+    let valid = true;
+    if(!email.checkValidity()){
+        alert('Please enter a valid email.');
+        valid = false;
+    }
+    if(!tel.checkValidity()){
+        alert('Please enter a valid 10-digit phone number.');
+        valid = false;
+    }
+    if(!valid) e.preventDefault();
+});
+</script>
+</body>
+</html>

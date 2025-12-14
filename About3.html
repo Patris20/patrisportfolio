@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Personal Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #150222, #260529, #44044d);
+    color: #251035;
+    position: relative;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    gap: 40px;
+}
+.menu-bg {
+    width: 150px;
+    max-width: 190px;
+    height: 70px;
+    background: linear-gradient(135deg, #5a1a80, #d40690);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -50px;
+}
+.heart {
+    font-size: 40px;
+    color: #ff69b4;
+    animation: jump 2s infinite;
+}
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+.navbar a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 20px;
+    line-height: 1;
+}
+.big-title {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 130px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 0;
+}
+.oblong-container {
+    position: absolute;
+    top: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    z-index: 1;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.oblong {
+    width: 200px;
+    height: 45px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ffb3e6, #be74f2);
+}
+.oblong.big {
+    width: 340px;
+    height: 80px;
+}
+.oblong, .oblong.big {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 25px;
+}
+#calcPopup {
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#2b0d3c;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 20px #ffb3e6;
+    z-index:10;
+}
+#calcPopup input {
+    width:240px;
+    height:50px;
+    font-size:24px;
+    text-align:right;
+    margin-bottom:10px;
+    border-radius:10px;
+    border:none;
+    padding:5px 10px;
+}
+#calcPopup button {
+    width:55px;
+    height:50px;
+    margin:3px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background: linear-gradient(135deg, #ffb3e6, #be74f2);
+    color:#000;
+}
+#calcPopup button:last-child {
+    width:100%;
+    background:#3e0066;
+    color:#fff;
+}
+#quotePopup {
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#2b0d3c;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 25px #ffb3e6;
+    z-index:10;
+    width:500px;
+    height:300px;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+#quotePopup #quoteText {
+    font-size:28px;
+    text-align:center;
+    color:#fff;
+}
+#quotePopup button {
+    padding:10px 15px;
+    margin:5px;
+    font-size:16px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background: linear-gradient(135deg, #ffb3e6, #be74f2);
+    color:#000;
+}
+#quotePopup button:last-child {
+    background:#3e0066;
+    color:#fff;
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+    <div class="menu-bg">
+        <span class="heart">&#10084;</span>
+    </div>
+<a href = "index.html">HOME</a>
+<a href = "About2.html">ABOUT ME</a>
+<a href = "About3.html">PROJECT</a>
+<a href = "Education.html">EDUCATION</a>
+<a href = "Contact.html">CONTACT</a>
+</div>
+<div class="big-title">PROJECTS</div>
+<div class="oblong-container">
+    <div class="column">
+        <div class="oblong big" onclick="window.open('https://yanamae17.github.io/pat/','_blank')">Portfolio Website</div>
+    </div>
+    <div class="column">
+        <div class="oblong big" onclick="openCalculator()">Calculator</div>
+    </div>
+    <div class="column">
+        <div class="oblong big" onclick="openQuote()">Inspirational Quotes</div>
+    </div>
+</div>
+<div id="calcPopup">
+    <input type="text" id="calcResult" readonly>
+    <br>
+    <button onclick="clearCalc()">C</button>
+    <button onclick="appendCalc('7')">7</button>
+    <button onclick="appendCalc('8')">8</button>
+    <button onclick="appendCalc('9')">9</button>
+    <button onclick="appendCalc('/')">/</button>
+    <br>
+    <button onclick="appendCalc('4')">4</button>
+    <button onclick="appendCalc('5')">5</button>
+    <button onclick="appendCalc('6')">6</button>
+    <button onclick="appendCalc('*')">*</button>
+    <br>
+    <button onclick="appendCalc('1')">1</button>
+    <button onclick="appendCalc('2')">2</button>
+    <button onclick="appendCalc('3')">3</button>
+    <button onclick="appendCalc('-')">-</button>
+    <br>
+    <button onclick="appendCalc('0')">0</button>
+    <button onclick="appendCalc('.')">.</button>
+    <button onclick="calcResult()">=</button>
+    <button onclick="appendCalc('+')">+</button>
+    <br><br>
+    <button onclick="closeCalculator()">Close</button>
+</div>
+<div id="quotePopup">
+    <div id="quoteText"></div>
+    <br>
+    <button onclick="nextQuote()">Next Quote</button>
+    <br><br>
+    <button onclick="closeQuote()">Close</button>
+</div>
+<script>
+const savedMode = localStorage.getItem('theme'); 
+if(savedMode === 'dark'){
+    document.body.style.background = 'linear-gradient(to right, #150222, #260529, #44044d)';
+    document.body.style.color = '#251035';
+} else {
+    document.body.style.background = 'linear-gradient(to right, #f4e1d2, #ffe6f0, #ffccf2)';
+    document.body.style.color = '#330033';
+}
+function openCalculator() {
+    document.getElementById('calcPopup').style.display = 'block';
+}
+function closeCalculator() {
+    document.getElementById('calcPopup').style.display = 'none';
+    document.getElementById('calcResult').value = '';
+}
+function appendCalc(val) {
+    document.getElementById('calcResult').value += val;
+}
+function clearCalc() {
+    document.getElementById('calcResult').value = '';
+}
+function calcResult() {
+    try {
+        document.getElementById('calcResult').value = eval(document.getElementById('calcResult').value);
+    } catch {
+        document.getElementById('calcResult').value = 'Error';
+    }
+}
+const quotes = [
+ "You can do it even if you feel you can't",
+ "Just keep fighting",
+ "Nakakapagod nang mapagod.",
+ "Kung kaya ng iba, kayanin mo rin.",
+ "Keep going, even if it’s hard.",
+ "Believe in yourself, you can do it.",
+ "Small steps still move you forward.",
+ "Don’t give up, progress takes time.",
+ "Hard work always pays off.",
+ "Challenges make you stronger.",
+ "Always remember, work hard because money makes you happy"
+];
+let currentQuote = 0;
+function openQuote() {
+    document.getElementById('quotePopup').style.display = 'flex';
+    currentQuote = 0;
+    document.getElementById('quoteText').innerText = quotes[currentQuote];
+}
+function nextQuote() {
+    currentQuote = (currentQuote + 1) % quotes.length;
+    document.getElementById('quoteText').innerText = quotes[currentQuote];
+}
+function closeQuote() {
+    document.getElementById('quotePopup').style.display = 'none';
+}
+</script>
+</body>
+</html>

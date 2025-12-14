@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Personal Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #150222, #260529, #44044d);
+    color: #251035;
+    position: relative;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    gap: 40px;
+}
+.menu-bg {
+    width: 150px;
+    max-width: 190px;
+    height: 70px;
+    background: linear-gradient(135deg, #5a1a80, #d40690);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -50px;
+}
+.heart {
+    font-size: 35px;
+    color: #ff69b4;
+    animation: jump 2s infinite;
+}
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+.navbar a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 20px;
+    line-height: 1;
+}
+.big-title {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 120px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #3e0066, #ffff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 0;
+}
+.contact-section {
+    position: absolute;
+    top: 350px;
+    left: 100px;
+    transform: translateX(0);
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+    z-index: 10;
+}
+.contact-item a {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-decoration: none;
+}
+.contact-item img {
+    display: block;
+}
+.fb-icon {
+    width: 120px;
+    height: 80px;
+}
+.phone-icon {
+    width: 80px;
+    height: 80px;
+}
+.email-icon {
+    width: 50px;
+    height: 50px;
+}
+.contact-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px black;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+    padding: 20px 0;
+    background: transparent;
+    z-index: 20;
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+    <div class="menu-bg">
+        <span class="heart">&#10084;</span>
+    </div>
+<a href = "index.html">HOME</a>
+<a href = "About2.html">ABOUT ME</a>
+<a href = "About3.html">PROJECT</a>
+<a href = "Education.html">EDUCATION</a>
+<a href = "Contact.html">CONTACT</a>
+</div>
+
+<div class="big-title">CONTACT ME</div>
+<div class="contact-section">
+    <div class="contact-item">
+        <a href="https://www.facebook.com/patrisann.avorque.1" target="_blank">
+            <img src="fb.png" class="fb-icon">
+            <div class="contact-text">Facebook</div>
+        </a>
+    </div>
+    <div class="contact-item">
+        <a href="tel:09108008760">
+            <img src="contact.png" class="phone-icon">
+            <div class="contact-text">09108008760</div>
+        </a>
+    </div>
+    <div class="contact-item">
+        <a href="mailto:patrisanavorque@gmail.com">
+            <img src="email.png" class="email-icon">
+            <div class="contact-text">patrisanavorque@gmail.com</div>
+        </a>
+    </div>
+</div>
+
+<footer class="footer">
+    &copy; 2025 Patris An Avorque. All rights reserved.
+</footer>
+
+<script>
+const savedMode = localStorage.getItem('theme'); 
+const footer = document.querySelector('.footer');
+
+if(savedMode === 'dark'){
+    document.body.style.background = 'linear-gradient(to right, #150222, #260529, #44044d)';
+    document.body.style.color = '#251035';
+    footer.style.color = 'white';
+} else {
+    document.body.style.background = 'linear-gradient(to right, #f4e1d2, #ffe6f0, #ffccf2)';
+    document.body.style.color = '#330033';
+    footer.style.color = 'black';
+}
+</script>
+</body>
+</html>
