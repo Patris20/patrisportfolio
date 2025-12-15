@@ -239,8 +239,9 @@ body {
 /* MOBILE FIX */
 @media screen and (max-width: 768px) {
     body {
-        height: auto; /* fixed extra space below */
+        height: auto; /* remove extra empty space */
         overflow-x: hidden;
+        overflow-y: auto; /* allow scrolling instead of extra space */
     }
     .big-title {
         font-size: 60px;
@@ -320,9 +321,6 @@ body {
 </div>
 <img src="flying.gif" class="butterfly" id="butterfly">
 </main>
-<footer style="color:white; margin-left:60px; margin-top:50px;">
-    <p>&copy; 2025 Patris An Avorque. All Rights Reserved.</p>
-</footer>
 
 <script>
 const butterfly = document.getElementById("butterfly");
